@@ -1,0 +1,10 @@
+const cornerMap = {
+  spongebob: 'spongebob.png',
+  patrick: 'patrick.png',
+  squidward: 'squidward.png',
+  mrkrabs: 'mrkrabs.png',
+  sandy: 'sandy.png',
+  plankton: 'plankton.png',
+  gary: 'gary.png'
+};
+avatar.src = `images/corner/${cornerMap[character]}`;
