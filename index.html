@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pick a Character!</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #87e6ff, #b3f0ff);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #fef200;
+      text-shadow: 2px 2px #000;
+      font-size: 3rem;
+      margin-bottom: 40px;
+    }
+
+    .character-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .character {
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .character:hover {
+      transform: scale(1.05);
+    }
+
+    .emoji {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧽 Pick a Character to Chat With!</h1>
+
+  <div class="character-grid">
+    <a href="chat.html?character=spongebob">
+      <div class="character">
+        <span class="emoji">🧽</span>
+        <strong>Spongebob</strong>
+      </div>
+    </a>
+
+    <a href="chat.html?character=patrick">
+      <div class="character">
+        <span class="emoji">🌸</span>
+        <strong>Patrick</strong>
+      </div>
+    </a>
+
+    <a href="chat.html?character=squidward">
+      <div class="character">
+        <span class="emoji">🎷</span>
+        <strong>Squidward</strong>
+      </div>
+    </a>
+
+    <a href="chat.html?character=mrkrabs">
+      <div class="character">
+        <span class="emoji">💰</span>
+        <strong>Mr. Krabs</strong>
+      </div>
+    </a>
+
+    <a href="chat.html?character=sandy">
+      <div class="character">
+        <span class="emoji">🥋</span>
+        <strong>Sandy</strong>
+      </div>
+    </a>
+
+    <a href="chat.html?character=plankton">
+      <div class="character">
+        <span class="emoji">🧠</span>
+        <strong>Plankton</strong>
+      </div>
+    </a>
+  </div>
+</body>
+</html>
