@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat with Your Character!</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #f0faff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+    }
+
+    header {
+      background-color: #87e6ff;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    #chat-box {
+      flex-grow: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bubble {
+      padding: 10px 15px;
+      border-radius: 20px;
+      margin: 8px 0;
+      max-width: 70%;
+      word-wrap: break-word;
+    }
+
+    .user {
+      align-self: flex-end;
+      background-color: #bae6fd;
+    }
+
+    .bot {
+      align-self: flex-start;
+      background-color: #fff59d;
+    }
+
+    form {
+      display: flex;
+      padding: 10px;
+      border-top: 2px solid #ccc;
+    }
+
+    input[type="text"] {
+      flex-grow: 1;
+      padding: 10px;
+      border: 2px solid #87e6ff;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin-left: 10px;
+      font-size: 1rem;
+      background-color: #87e6ff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header id="chat-header">Chat</header>
+
+  <div id="chat-box"></div>
+
+  <form id="chat-form">
+    <input type="text" id="user-input" placeholder="Type your message..." required />
+    <button type="submit">Send</button>
+  </form>
+
+  <script>
+    const chatBox = document.getElementById('chat-box');
+    const chatForm = document.getElementById('chat-form');
+    const userInput = document.getElementById('user-input');
+    const header = document.getElementById('chat-header');
+
+    const params = new URLSearchParams(window.location.search);
+    const character = params.get('character') || 'spongebob';
+
+    header.textContent = `Chatting with ${character.charAt(0).toUpperCase() + character.slice(1)}`;
+
+    const replies = {
+      spongebob: [
+        "I'm ready! I'm ready! I'm ready!",
+        "I don't need it... I DEFINITELY don't need it... I NEED IT!",
+        "You don't need a license to drive a sandwich.",
+        "Ravioli, ravioli, give me the formuoli.",
+        "I'm a Goofy Goober, yeah!",
+        "F is for friends who do stuff together, U is for you and me!",
+        "The Krusty Krab pizza is the pizza for you and me!",
+        "This isn't your average, everyday darkness... this is advanced darkness.",
+        "Just look at it, Patrick! It's the chiz!",
+        "The Krusty Krab is unfair! Mr. Krabs is in there!"
+      ],
+      patrick: [
+        "Is mayonnaise an instrument?",
+        "Firmly grasp it!",
+        "The inner machinations of my mind are an enigma. *milk spills*",
+        "I can't see my forehead.",
+        "I wumbo, you wumbo, he, she, we wumbo!",
+        "I'm not a Krusty Krab.",
+        "It's called the Ugly Barnacle. He was so ugly that everyone died. The end.",
+        "I don’t think wumbo is a real word.",
+        "Do stairs go up or down?",
+        "Sometimes I eat ice cream with my nose."
+      ],
+      squidward: [
+        "Bold of you to assume I care.",
+        "Another day, another migraine.",
+        "Art is dead. Like my patience.",
+        "I was hoping for some peace and quiet.",
+        "This is not your average, everyday darkness. This is... advanced darkness.",
+        "Why do I even talk to you people?",
+        "Go play with your net somewhere else.",
+        "Just leave me to suffer in silence.",
+        "It’s just a cruel reminder that I’m single and likely to remain that way forever.",
+        "I should have called in sick."
+      ],
+      mrkrabs: [
+        "Money money money!",
+        "Do you smell that? That smell... the smelly smell that smells... smelly!",
+        "That’ll be 99.99!",
+        "Time is money, boy!",
+        "Don’t touch me treasure!",
+        "I can’t afford to pay you! Work for free!",
+        "I sold me soul for 62 cents... again!"
+      ],
+      sandy: [
+        "I’m a Texas squirrel in an underwater world!",
+        "You’re about as useful as a screen door on a submarine.",
+        "Let's go karate chopping!",
+        "Back in Texas, we ride bulls, not jellyfish.",
+        "I'm fixin' to wrangle some science!",
+        "Don’t mess with the squirrel!"
+      ],
+      plankton: [
+        "I went to college!",
+        "Soon I’ll have the Krabby Patty formula!",
+        "You’ll regret ever crossing me, Krabs!",
+        "Computer Wife, execute Plan Z!",
+        "My plans are genius! It’s the execution that’s terrible.",
+        "Curse you, Krabs!"
+      ],
+      gary: [
+        "Meow",
+        "Meow.",
+        "Meow!",
+        "Meeeeow~",
+        "Mrrrow?"
+      ]
+    };
+
+    function addBubble(message, sender) {
+      const bubble = document.createElement('div');
+      bubble.className = `bubble ${sender}`;
+      bubble.textContent = message;
+      chatBox.appendChild(bubble);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    chatForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const message = userInput.value;
+      addBubble(message, 'user');
+      userInput.value = '';
+
+      setTimeout(() => {
+        const charReplies = replies[character] || ["Hi there!"];
+        const reply = charReplies[Math.floor(Math.random() * charReplies.length)];
+        addBubble(reply, 'bot');
+      }, 600);
+    });
+  </script>
+</body>
+</html>
